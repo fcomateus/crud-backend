@@ -4,14 +4,16 @@ const personController = new PersonController();
 
 const routes = Router();
 
-routes.post("/pessoa", personController.create);
+routes.post("/pessoas", personController.create);
 
-routes.put("/pessoa/:id", personController.update);
+routes.put("/pessoas/:id", personController.update);
 
-routes.get("/pessoa/:id", personController.show)
+routes.get("/pessoas/:id", personController.show);
 
-routes.get("/pessoa", personController.index)
+routes.get("/pessoas", personController.index);
 
-routes.delete("/pessoa/:id", personController.delete)
+routes.get("/pessoas_by_name", personController.searchByName);
+
+routes.delete("/pessoas/:id", personController.delete);
 
 module.exports = routes;

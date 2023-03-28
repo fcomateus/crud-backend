@@ -70,6 +70,21 @@ class PersonController {
 
         return res.json({dados});
     }
+
+    async searchByName(req, res) {
+        const { nome } = req.body;
+
+        const dados = await knex("pessoas")
+        .select([
+            "pessoas.id",
+            "pessoas.nome",
+            "pessoas.idade",
+            "pessoas.dt_nasc" 
+        ]).whereLike("pessoas.nome", nome)
+        .innerJoin("enderecos", "pessoas.id", "enderecos.id_pessoa");
+
+        return res.json({dados});
+    }
 }
 
 module.exports = PersonController;
