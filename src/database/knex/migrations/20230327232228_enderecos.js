@@ -5,7 +5,7 @@
 exports.up = knex => knex.schema.createTable("enderecos", table => {
     table.increments("id");
     table.integer("id_pessoa").notNullable()
-    table.foreign("id_pessoa").references("id").inTable("pessoas");
+    table.foreign("id_pessoa").references("id").inTable("pessoas").onDelete("CASCADE");
 
     table.string("cep", 8).notNullable();
     table.string("rua", 60);
