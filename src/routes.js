@@ -10,6 +10,8 @@ routes.put("/pessoa/:id", personController.update);
 
 routes.get("/pessoa/:id", personController.show)
 
+routes.get("/pessoa", personController.index)
+
 routes.delete("/pessoa/:id", personController.delete)
 
 module.exports = routes;

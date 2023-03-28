@@ -24,12 +24,18 @@ class PersonController {
     async show(req, res) {
         const { id } = req.params;
 
-        const pessoa = await knex("pessoa").where({id});
-        const endereco = await knex("endereco").where({id_pessoa: id})
+        const dados = await knex("pessoas")
+        .select([
+            "pessoas.id",
+            "pessoas.nome",
+            "pessoas.idade",
+            "pessoas.dt_nasc"
+        ])
+        .where("pessoas.id", id)
+        .innerJoin("enderecos", "pessoas.id", "enderecos.id_pessoa")
 
         return res.json({
-            pessoa,
-            endereco
+            dados
         });
     }
 
@@ -50,6 +56,19 @@ class PersonController {
         await knex("pessoas").where({id}).delete();
         await knex("enderecos").where({id_pessoa:id}).delete();  
 
+        return res.json();
+    }
+
+    async index(req, res){
+        const dados = await knex("pessoas")
+        .select([
+            "pessoas.id",
+            "pessoas.nome",
+            "pessoas.idade",
+            "pessoas.dt_nasc"
+        ]).innerJoin("enderecos", "pessoas.id", "enderecos.id_pessoa")
+
+        return res.json({dados});
     }
 }
 
