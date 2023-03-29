@@ -46,6 +46,7 @@ class PersonController {
         .where("pessoas.id", id)
         .innerJoin("enderecos", "pessoas.id", "enderecos.id_pessoa")
 
+        console.log(dados);
         // const mock = 
         //     {
         //         id: 1,
@@ -103,8 +104,9 @@ class PersonController {
             "enderecos.bairro",
         ])
         .from("pessoas")
-        .whereLike("pessoas.nome", `%${nome}%`)
-        .innerJoin("enderecos", "pessoas.id", "enderecos.id_pessoa");
+        .whereILike("pessoas.nome", `%${nome}%`)
+        .innerJoin("enderecos", "pessoas.id", "enderecos.id_pessoa")
+        .orderBy("pessoas.nome");
 
         // const mock = [
         //     {
