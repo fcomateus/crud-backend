@@ -8,9 +8,9 @@ exports.up = knex => knex.schema.createTable("enderecos", table => {
     table.foreign("id_pessoa").references("id").inTable("pessoas").onDelete("CASCADE");
 
     table.string("cep", 8).notNullable();
-    table.string("rua", 60);
-    table.string("numero", 6);
-    table.string("bairro", 60);
+    table.string("rua", 60).notNullable();
+    table.string("numero", 6).notNullable();
+    table.string("bairro", 60).notNullable();
 })
 
 
