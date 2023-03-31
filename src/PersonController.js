@@ -72,8 +72,6 @@ class PersonController {
     async index(req, res){
         const { nome } = req.query;
 
-        console.log(nome);
-
         const pessoas = await knex
         .select([
             "pessoas.id",
